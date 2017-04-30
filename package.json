@@ -1,0 +1,22 @@
+{
+  "name": "safaridriver-tests",
+  "version": "0.1.0",
+  "description": "Test cases showing flaws in safaridriver",
+  "license": "MIT",
+  "repository": "vitalyq/safaridriver-tests",
+  "author": "Vitaly Kuznetsov",
+  "private": true,
+  "scripts": {
+    "lint": "eslint test",
+    "test": "mocha"
+  },
+  "dependencies": {
+    "mocha": "^3.3.0",
+    "selenium-webdriver": "^3.4.0"
+  },
+  "devDependencies": {
+    "eslint": "3.19.0",
+    "eslint-config-airbnb-base": "11.1.3",
+    "eslint-plugin-import": "2.2.0"
+  }
+}
