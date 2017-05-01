@@ -21,8 +21,8 @@ describe('WebElement.sendKeys()', function () {
     driver.executeScript(createElement);
     const el = driver.findElement(By.id('myInput'));
     el.sendKeys('x', Key.BACK_SPACE);
-    el.getText()
-      .then(text => assert.strictEqual(text, ''));
+    el.getAttribute('value')
+      .then(value => assert.strictEqual(value, ''));
 
     return driver.quit();
   });
