@@ -5,7 +5,7 @@ const { Builder } = require('selenium-webdriver');
 const { describe, it } = require('selenium-webdriver/testing');
 const assert = require('assert');
 
-describe('selenium-webdriver', function () {
+describe('Driver', function () {
   this.timeout(60000);
 
   it('#get()', function () {
