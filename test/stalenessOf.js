@@ -1,4 +1,4 @@
-// until.stalenessOf condition is broken in Safari driver.
+// until.stalenessOf() condition is broken in Safari driver.
 const { Builder, By, until } = require('selenium-webdriver');
 const { describe, it } = require('selenium-webdriver/testing');
 
@@ -13,10 +13,10 @@ function removeElement() {
   document.body.removeChild(el);
 }
 
-describe('until', function () {
+describe('until.stalenessOf()', function () {
   this.timeout(60000);
 
-  it('#stalenessOf()', function () {
+  it('should work', function () {
     const driver = new Builder()
       .forBrowser('safari')
       .build();

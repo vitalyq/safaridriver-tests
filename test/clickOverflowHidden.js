@@ -1,4 +1,4 @@
-// Calling WebElement.click() on element with overflow hidden throws in Safari driver:
+// Calling WebElement.click() on an element with overflow hidden throws in Safari driver:
 // ElementNotVisibleError: An element command could not be completed because the element
 // is not visible on the page.
 const { Builder } = require('selenium-webdriver');
@@ -13,10 +13,10 @@ function createElement() {
   return el;
 }
 
-describe('WebElement with overflow hidden', function () {
+describe('WebElement.click()', function () {
   this.timeout(60000);
 
-  it('#click()', function () {
+  it('should not throw if an element has overflow hidden', function () {
     const driver = new Builder()
       .forBrowser('safari')
       .build();

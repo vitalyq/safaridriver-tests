@@ -1,14 +1,14 @@
-// Safari WebDriver doesn't wait for the page to load when get()
+// Safari WebDriver doesn't wait for a page load when get()
 // is called second or subsequent time after driver instantiation.
 // Setting pageLoadTimeout doesn't resolve the issue.
 const { Builder } = require('selenium-webdriver');
 const { describe, it } = require('selenium-webdriver/testing');
 const assert = require('assert');
 
-describe('Driver', function () {
+describe('Driver.get()', function () {
   this.timeout(60000);
 
-  it('#get()', function () {
+  it('should wait for a page load if called second or subsequent time', function () {
     const driver = new Builder()
       .forBrowser('safari')
       .build();
