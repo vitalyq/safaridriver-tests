@@ -1,6 +1,6 @@
 # safaridriver-tests
 
-Test cases showing flaws in [safaridriver](https://webkit.org/blog/6900/webdriver-support-in-safari-10/).
+Test cases showing flaws in [safaridriver](https://webkit.org/blog/6900/webdriver-support-in-safari-10/). Errors are described in the test files.
 
 ##### All the test are failing in:
 - Safari 10.1
