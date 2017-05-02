@@ -3,6 +3,7 @@
 // is not visible on the page.
 const { Builder } = require('selenium-webdriver');
 const { describe, it, before, after } = require('selenium-webdriver/testing');
+const safari = require('selenium-webdriver/safari');
 const quitSafely = require('./utils/quitSafely');
 
 function createElement() {
@@ -19,8 +20,12 @@ describe('WebElement.click()', function () {
   let driver;
 
   before(function () {
+    const safariOptions = new safari.Options()
+      .setTechnologyPreview(true);
+
     driver = new Builder()
       .forBrowser('safari')
+      .setSafariOptions(safariOptions)
       .build();
   });
 

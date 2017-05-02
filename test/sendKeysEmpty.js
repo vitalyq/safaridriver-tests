@@ -2,6 +2,7 @@
 // WebDriverError: An unknown server-side error occurred while processing the command.
 const { Builder, By } = require('selenium-webdriver');
 const { describe, it, before, after } = require('selenium-webdriver/testing');
+const safari = require('selenium-webdriver/safari');
 const quitSafely = require('./utils/quitSafely');
 
 function createElement() {
@@ -15,8 +16,12 @@ describe('WebElement.sendKeys()', function () {
   let driver;
 
   before(function () {
+    const safariOptions = new safari.Options()
+      .setTechnologyPreview(true);
+
     driver = new Builder()
       .forBrowser('safari')
+      .setSafariOptions(safariOptions)
       .build();
   });
 
