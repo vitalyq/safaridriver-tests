@@ -3,6 +3,7 @@
 // '/session/[session id]/element/active'.
 const { Builder } = require('selenium-webdriver');
 const { describe, it, before, after } = require('selenium-webdriver/testing');
+const quitSafely = require('./utils/quitSafely');
 
 describe('Driver.switchTo().activeElement()', function () {
   this.timeout(60000);
@@ -15,7 +16,7 @@ describe('Driver.switchTo().activeElement()', function () {
   });
 
   after(function () {
-    driver.quit();
+    return quitSafely(driver);
   });
 
   it('should not throw', function () {

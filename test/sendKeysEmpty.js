@@ -2,6 +2,7 @@
 // WebDriverError: An unknown server-side error occurred while processing the command.
 const { Builder, By } = require('selenium-webdriver');
 const { describe, it, before, after } = require('selenium-webdriver/testing');
+const quitSafely = require('./utils/quitSafely');
 
 function createElement() {
   var el = document.createElement('input');
@@ -20,7 +21,7 @@ describe('WebElement.sendKeys()', function () {
   });
 
   after(function () {
-    driver.quit();
+    return quitSafely(driver);
   });
 
   it('should not throw when the argument is an empty string', function () {

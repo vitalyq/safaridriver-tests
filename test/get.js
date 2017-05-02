@@ -4,6 +4,7 @@
 const { Builder } = require('selenium-webdriver');
 const { describe, it, before, after } = require('selenium-webdriver/testing');
 const assert = require('assert');
+const quitSafely = require('./utils/quitSafely');
 
 describe('Driver.get()', function () {
   this.timeout(60000);
@@ -16,7 +17,7 @@ describe('Driver.get()', function () {
   });
 
   after(function () {
-    driver.quit();
+    return quitSafely(driver);
   });
 
   it('should wait for a page load if called second or subsequent time', function () {

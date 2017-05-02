@@ -2,6 +2,7 @@
 const { Builder, By } = require('selenium-webdriver');
 const { describe, it, before, after } = require('selenium-webdriver/testing');
 const assert = require('assert');
+const quitSafely = require('./utils/quitSafely');
 
 function createSelect() {
   document.body.innerHTML = '<select><option>1</option><option>2</option></select>';
@@ -18,7 +19,7 @@ describe('WebElement.click()', function () {
   });
 
   after(function () {
-    driver.quit();
+    return quitSafely(driver);
   });
 
   it('should select an option of a select element', function () {

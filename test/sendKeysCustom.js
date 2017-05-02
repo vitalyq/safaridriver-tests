@@ -2,6 +2,7 @@
 const { Builder, By, Key } = require('selenium-webdriver');
 const { describe, it, before, after } = require('selenium-webdriver/testing');
 const assert = require('assert');
+const quitSafely = require('./utils/quitSafely');
 
 function createElement() {
   var el = document.createElement('input');
@@ -20,7 +21,7 @@ describe('WebElement.sendKeys()', function () {
   });
 
   after(function () {
-    driver.quit();
+    return quitSafely(driver);
   });
 
   it('should send custom keys', function () {

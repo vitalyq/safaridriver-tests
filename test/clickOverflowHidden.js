@@ -3,6 +3,7 @@
 // is not visible on the page.
 const { Builder } = require('selenium-webdriver');
 const { describe, it, before, after } = require('selenium-webdriver/testing');
+const quitSafely = require('./utils/quitSafely');
 
 function createElement() {
   var el = document.createElement('div');
@@ -24,7 +25,7 @@ describe('WebElement.click()', function () {
   });
 
   after(function () {
-    driver.quit();
+    return quitSafely(driver);
   });
 
   it('should not throw if an element has overflow hidden', function () {
