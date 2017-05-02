@@ -2,7 +2,7 @@
 // ElementNotVisibleError: An element command could not be completed because the element
 // is not visible on the page.
 const { Builder } = require('selenium-webdriver');
-const { describe, it } = require('selenium-webdriver/testing');
+const { describe, it, before, after } = require('selenium-webdriver/testing');
 
 function createElement() {
   var el = document.createElement('div');
@@ -15,16 +15,21 @@ function createElement() {
 
 describe('WebElement.click()', function () {
   this.timeout(60000);
+  let driver;
 
-  it('should not throw if an element has overflow hidden', function () {
-    const driver = new Builder()
+  before(function () {
+    driver = new Builder()
       .forBrowser('safari')
       .build();
+  });
 
+  after(function () {
+    driver.quit();
+  });
+
+  it('should not throw if an element has overflow hidden', function () {
     driver.get('http://example.com/');
     driver.executeScript(createElement)
       .then(el => el.click());
-
-    return driver.quit();
   });
 });

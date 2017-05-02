@@ -2,19 +2,24 @@
 // WebDriverError: HTTP method 'POST' is not supported for command
 // '/session/[session id]/element/active'.
 const { Builder } = require('selenium-webdriver');
-const { describe, it } = require('selenium-webdriver/testing');
+const { describe, it, before, after } = require('selenium-webdriver/testing');
 
 describe('Driver.switchTo().activeElement()', function () {
   this.timeout(60000);
+  let driver;
 
-  it('should not throw', function () {
-    const driver = new Builder()
+  before(function () {
+    driver = new Builder()
       .forBrowser('safari')
       .build();
+  });
 
+  after(function () {
+    driver.quit();
+  });
+
+  it('should not throw', function () {
     driver.get('http://example.com/');
     driver.switchTo().activeElement();
-
-    return driver.quit();
   });
 });

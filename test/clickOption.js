@@ -1,6 +1,6 @@
 // In Safari WebElement.click() doesn't select options of select elements.
 const { Builder, By } = require('selenium-webdriver');
-const { describe, it } = require('selenium-webdriver/testing');
+const { describe, it, before, after } = require('selenium-webdriver/testing');
 const assert = require('assert');
 
 function createSelect() {
@@ -9,12 +9,19 @@ function createSelect() {
 
 describe('WebElement.click()', function () {
   this.timeout(60000);
+  let driver;
 
-  it('should select an option of a select element', function () {
-    const driver = new Builder()
+  before(function () {
+    driver = new Builder()
       .forBrowser('safari')
       .build();
+  });
 
+  after(function () {
+    driver.quit();
+  });
+
+  it('should select an option of a select element', function () {
     driver.get('http://example.com/');
     driver.executeScript(createSelect);
     const select = driver.findElement(By.css('select'));
@@ -22,7 +29,5 @@ describe('WebElement.click()', function () {
     option.click();
     select.getAttribute('selectedIndex')
       .then(index => assert.strictEqual(index, '1'));
-
-    return driver.quit();
   });
 });

@@ -1,6 +1,6 @@
 // until.stalenessOf() condition is broken in Safari driver.
 const { Builder, By, until } = require('selenium-webdriver');
-const { describe, it } = require('selenium-webdriver/testing');
+const { describe, it, before, after } = require('selenium-webdriver/testing');
 
 function createElement() {
   var el = document.createElement('div');
@@ -15,12 +15,19 @@ function removeElement() {
 
 describe('until.stalenessOf()', function () {
   this.timeout(60000);
+  let driver;
 
-  it('should work', function () {
-    const driver = new Builder()
+  before(function () {
+    driver = new Builder()
       .forBrowser('safari')
       .build();
+  });
 
+  after(function () {
+    driver.quit();
+  });
+
+  it('should work', function () {
     driver.get('http://example.com/');
     driver.executeScript(createElement);
     const el = driver.findElement(By.id('myDiv'));
@@ -28,7 +35,5 @@ describe('until.stalenessOf()', function () {
 
     // TimeoutError: Waiting element to become stale
     driver.wait(until.stalenessOf(el), 10000);
-
-    return driver.quit();
   });
 });
